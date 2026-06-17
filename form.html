@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gift Card Withdrawal</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+}
+
+/* NAVBAR */
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 50px;
+    background:#111827;
+    border-bottom:1px solid #1e293b;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+    color:#10b981;
+}
+
+.nav-links{
+    display:flex;
+    gap:20px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#cbd5e1;
+}
+
+.profile{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:#10b981;
+}
+
+/* MAIN */
+.container{
+    width:90%;
+    max-width:1300px;
+    margin:auto;
+    padding:30px 0;
+}
+
+/* BALANCE CARD */
+.balance-card{
+    background:linear-gradient(135deg,#10b981,#059669);
+    padding:30px;
+    border-radius:20px;
+    margin-bottom:30px;
+}
+
+.balance-card h3{
+    opacity:.8;
+    margin-bottom:10px;
+}
+
+.balance-card h1{
+    font-size:42px;
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+/* FORM */
+.form-card{
+    background:#1e293b;
+    padding:25px;
+    border-radius:20px;
+}
+
+.form-card h2{
+    margin-bottom:20px;
+}
+
+.input-group{
+    margin-bottom:15px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:6px;
+    color:#cbd5e1;
+}
+
+.input-group input{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#334155;
+    color:white;
+}
+
+.input-group input:focus{
+    outline:2px solid #10b981;
+}
+
+button{
+    width:100%;
+    border:none;
+    padding:15px;
+    border-radius:10px;
+    background:#10b981;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#059669;
+}
+
+/* HISTORY */
+.history{
+    background:#1e293b;
+    padding:25px;
+    border-radius:20px;
+}
+
+.history h2{
+    margin-bottom:20px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    text-align:left;
+    padding:12px;
+}
+
+th{
+    color:#94a3b8;
+}
+
+tr{
+    border-bottom:1px solid #334155;
+}
+
+.success{
+    color:#10b981;
+}
+
+.pending{
+    color:#f59e0b;
+}
+
+@media(max-width:900px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .navbar{
+        padding:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">GiftCash</div>
+
+    <div class="nav-links">
+        <a href="#">Dashboard</a>
+        <a href="#">Withdraw</a>
+        <a href="#">History</a>
+    </div>
+
+    <div class="profile"></div>
+</nav>
+
+<div class="container">
+
+    <div class="balance-card">
+        <h3>Available Balance</h3>
+        <h1>$13,450.00</h1>
+    </div>
+
+    <div class="grid">
+
+        <!-- WITHDRAW FORM -->
+        <div class="form-card">
+
+            <h2>Withdraw Gift Card</h2>
+
+            <form id="withdrawForm">
+
+                <div class="input-group">
+                    <label>User Name</label>
+                    <input type="text" placeholder="John Doe">
+                </div>
+
+                <div class="input-group">
+                    <label>Bank Name</label>
+                    <input type="text" placeholder="Wise">
+                </div>
+
+                <div class="input-group">
+                    <label>IBAN</label>
+                    <input type="text" placeholder="GB29NWBK60161331926819">
+                </div>
+                <div class="input-group">
+                    <label>SWIFT/BIC</label>
+                    <input type="text" placeholder="NWBKGB2L">
+                </div>
+
+                <div class="input-group">
+                    <label>Gift Card Code</label>
+                    <input type="text" placeholder="XXXX-XXXX-XXXX">
+                </div>
+
+                <div class="input-group">
+                    <label>Amount ($)</label>
+                    <input type="number" placeholder="100">
+                </div>
+                <div class="input-group">
+                    <label>Bank Withdraw Fee (min $300.00 Gift Card Code)</label>
+                    <input type="text" placeholder="XXXX-XXXX-XXXX">
+                </div>
+
+                <button type="submit">
+                    Withdraw Funds
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- HISTORY -->
+        <div class="history">
+
+            <h2>Withdrawal History</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="historyTable">
+
+                    <tr>
+                        <td>17 Jun 2026</td>
+                        <td>$13,450.00</td>
+                        <td class="success">Completed</td>
+                    </tr>
+
+                    <tr>
+                        <td>5 mar 2026</td>
+                        <td>$10,000.00</td>
+                        <td class="pending">Pending</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>8 jan 2026</td>
+                        <td>$12,500.00</td>
+                        <td class="pending">Pending</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+document
+.getElementById("withdrawForm")
+.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    alert("You have to have a min of $300.00 on the gift card to withdraw!");
+
+});
+
+</script>
+
+</body>
+</html>
